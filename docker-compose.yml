@@ -1,0 +1,21 @@
+version: '3'
+
+name: "transaction_service"
+
+services:
+  api:
+    container_name: transaction_api
+    build: 
+      context: .
+      dockerfile: Dockerfile.api
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+  database:
+    container_name: transaction_database
+    image: postgres:14
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
